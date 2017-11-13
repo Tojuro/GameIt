@@ -72,6 +72,8 @@ namespace GameItShared
 
     public class ProgressBar
     {
+        public string Title { get; set; }
+
         public List<Bar> BarLayers { get; set;}
 
         public Bar BackBar { get; set; }

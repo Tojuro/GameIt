@@ -95,12 +95,12 @@ namespace GameItViewer
                 
                 if (ViewDefinition.ProgressBar != null)
                 {
+                    spriteBatch.DrawString(font, ViewDefinition.ProgressBar.Title, new Vector2(BarStart, 75), Color.Black);
                     if (ViewDefinition.ProgressBar.HasBackBar && ViewDefinition.ProgressBar.BackBar != null)
                     {
                         var bbarRec = new Rectangle(BarStart, 99, BarLength, 62);
                         Primitives2D.FillRectangleRound(spriteBatch, bbarRec, Color.Gray, ViewDefinition.ProgressBar.BackBar.Text, Color.White, font, ViewDefinition.ProgressBar.BackBar.TextAlign);
                     }
-
                     foreach (var pBar in ViewDefinition.ProgressBar.BarLayers)
                     {
                         var rect = new Rectangle(BarStart, 100, pBar.Length, 60);
@@ -120,7 +120,8 @@ namespace GameItViewer
                 var rowRec = new Rectangle(100, 400, 1420, 50);
                 foreach(var row in ViewDefinition.Rows)
                 {
-                    
+                    //var rectangle2 = new Rectangle(100, 200, 600, 50);
+                    //Primitives2D.FillRectangleRound(spriteBatch, rectangle2, Color.Red, "Team   Red", Color.White, font);
                 }
 
             spriteBatch.End();
