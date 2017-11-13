@@ -13,9 +13,12 @@ namespace GameItViewer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font;
+        ViewDefinition ViewDefinition;
 
         public View(ViewDefinition viewDefinition)
         {
+            ViewDefinition = viewDefinition;
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
@@ -34,9 +37,7 @@ namespace GameItViewer
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
-            font = Content.Load<SpriteFont>("CourierNew");
-
+           
             base.Initialize();
 
         }
@@ -48,6 +49,8 @@ namespace GameItViewer
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            font = Content.Load<SpriteFont>("Verdana");
 
             // TODO: use this.Content to load your game content here
         }
@@ -77,6 +80,9 @@ namespace GameItViewer
             base.Update(gameTime);
         }
 
+        private int BarStart = 500;
+        private int BarLength = 1220;
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -86,15 +92,36 @@ namespace GameItViewer
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
+                
+                if (ViewDefinition.ProgressBar != null)
+                {
+                    if (ViewDefinition.ProgressBar.HasBackBar && ViewDefinition.ProgressBar.BackBar != null)
+                    {
+                        var bbarRec = new Rectangle(BarStart, 99, BarLength, 62);
+                        Primitives2D.FillRectangleRound(spriteBatch, bbarRec, Color.Gray, ViewDefinition.ProgressBar.BackBar.Text, Color.White, font, ViewDefinition.ProgressBar.BackBar.TextAlign);
+                    }
 
-                var rectangle1 = new Rectangle(100, 300, 455, 50);
-                Primitives2D.FillRectangleRound(spriteBatch, rectangle1, Color.Blue);
+                    foreach (var pBar in ViewDefinition.ProgressBar.BarLayers)
+                    {
+                        var rect = new Rectangle(BarStart, 100, pBar.Length, 60);
+                        Primitives2D.FillRectangleRound(spriteBatch, rect, pBar.Color, pBar.Text, Color.White, font, pBar.TextAlign);
+                    }
+                }            
+                
+                //var rectangle1 = new Rectangle(100, 300, 455, 50);
+                //Primitives2D.FillRectangleRound(spriteBatch, rectangle1, Color.Blue, "Team   Blue", Color.White, font);
 
-                var rectangle3 = new Rectangle(100, 100, 388, 50);
-                Primitives2D.FillRectangleRound(spriteBatch, rectangle3, Color.Purple);
+                //var rectangle3 = new Rectangle(100, 100, 388, 50);
+                //Primitives2D.FillRectangleRound(spriteBatch, rectangle3, Color.Purple, "Team   Purple", Color.White, font);
 
-                var rectangle2 = new Rectangle(100, 200, 600, 50);
-                Primitives2D.FillRectangleRound(spriteBatch, rectangle2, Color.Red);
+                //var rectangle2 = new Rectangle(100, 200, 600, 50);
+                //Primitives2D.FillRectangleRound(spriteBatch, rectangle2, Color.Red, "Team   Red", Color.White, font);
+
+                var rowRec = new Rectangle(100, 400, 1420, 50);
+                foreach(var row in ViewDefinition.Rows)
+                {
+                    
+                }
 
             spriteBatch.End();
 

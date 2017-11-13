@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameItShared;
 
 namespace GameItViewer
 {
     /// <summary>
     /// </summary>
-    public static class Primitives2D
+    public static partial class Primitives2D
     {
 
 
@@ -133,10 +134,13 @@ namespace GameItViewer
             DrawCircle(spriteBatch, rec.X+rec.Width, rec.Y + rec.Height / 2, rec.Height / 2, 36, color, rec.Height / 2);
         }
 
-        public static void FillRectangleRound(this SpriteBatch spriteBatch, Rectangle rec, Color color, string text, Color fontColor, SpriteFont font)
+        public static void FillRectangleRound(this SpriteBatch spriteBatch, Rectangle rec, Color color, string text, Color fontColor, SpriteFont font, TextAlign align = TextAlign.Left)
         {
             FillRectangleRound(spriteBatch, rec, color);
-            spriteBatch.DrawString(font, text, new Vector2(rec.X, rec.Y), fontColor);
+            var size = font.MeasureString(text).X;
+            var x = align.Equals(TextAlign.Left) ? rec.X : rec.X + rec.Width - size;
+            spriteBatch.DrawString(font, text, new Vector2(x, rec.Y), fontColor);
+
         }
 
         #endregion

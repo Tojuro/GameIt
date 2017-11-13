@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/trodgers/source/repos/GameIt/GameItViewer/Content/CourierNew.spritefont</SourceFile>
-  <SourceTime>2017-11-11T20:34:39.8225238-05:00</SourceTime>
-  <DestFile>C:/dev/MonoGame/Tools/MGCB/bin/Windows/AnyCPU/Debug/../../../../../../../../Users/trodgers/source/repos/GameIt/GameItViewer/Content/CourierNew.xnb</DestFile>
-  <DestTime>2017-11-11T21:37:16.7715773-05:00</DestTime>
+  <SourceFile>C:/Users/trodgers/source/repos/GameIt/GameItViewer/Content/Verdana.spritefont</SourceFile>
+  <SourceTime>2017-11-11T22:38:55.2976349-05:00</SourceTime>
+  <DestFile>C:/dev/MonoGame/Tools/MGCB/bin/Windows/AnyCPU/Debug/../../../../../../../../Users/trodgers/source/repos/GameIt/GameItViewer/Content/Verdana.xnb</DestFile>
+  <DestTime>2017-11-11T22:40:31.9678171-05:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-11-09T15:49:15.4538269-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
