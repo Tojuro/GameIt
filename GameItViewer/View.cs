@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameItViewer
 {
@@ -94,27 +95,53 @@ namespace GameItViewer
 
             spriteBatch.Begin();
 
-            var startY = 99;
+            var startY = 25;
 
-                if (ViewDefinition.ProgressBar != null)
+            // PROGRESS BAR
+
+            if (ViewDefinition.ProgressBar != null)
+            {
+                spriteBatch.DrawString(font, ViewDefinition.ProgressBar.Title??string.Empty, new Vector2(BarStart, startY), Color.Black);
+                if (ViewDefinition.ProgressBar.HasBackBar && ViewDefinition.ProgressBar.BackBar != null)
                 {
-                    spriteBatch.DrawString(font, ViewDefinition.ProgressBar.Title??string.Empty, new Vector2(BarStart, startY), Color.Black);
-                    if (ViewDefinition.ProgressBar.HasBackBar && ViewDefinition.ProgressBar.BackBar != null)
-                    {
-                        var bbarRec = new Rectangle(BarStart, startY, BarLength, 62);
-                        Primitives2D.FillRectangleRound(spriteBatch, bbarRec, Color.Gray, ViewDefinition.ProgressBar.BackBar.Text, Color.White, font, ViewDefinition.ProgressBar.BackBar.TextAlign);
-                    }
-                    foreach (var pBar in ViewDefinition.ProgressBar.BarLayers)
-                    {
-                        var rect = new Rectangle(BarStart, startY+1, pBar.Length, 60);
-                        Primitives2D.FillRectangleRound(spriteBatch, rect, pBar.Color, pBar.Text, Color.White, font, pBar.TextAlign);
-                    }
-                    startY += 125;
+                    var bbarRec = new Rectangle(BarStart, startY, BarLength, 62);
+                    Primitives2D.FillRectangleRound(spriteBatch, bbarRec, Color.Gray, ViewDefinition.ProgressBar.BackBar.Text, Color.White, font, ViewDefinition.ProgressBar.BackBar.TextAlign);
+                }
+                foreach (var pBar in ViewDefinition.ProgressBar.BarLayers)
+                {
+                    var rect = new Rectangle(BarStart, startY+1, pBar.Length, 60);
+                    Primitives2D.FillRectangleRound(spriteBatch, rect, pBar.Color, pBar.Text, Color.White, font, pBar.TextAlign);
+                }
+                startY += 100;
+            }
+
+            //INDIVIDUAL LEADERBOARD
+            if (ViewDefinition.TeamBars.Any())
+            {
+                spriteBatch.DrawString(font, "TEAM   LEADERBOARD", new Vector2(BarStart, startY), Color.DarkBlue);
+                startY += 45;
+
+                foreach (var row in ViewDefinition.TeamBars)
+                {
+                    var rect = new Rectangle(BarStart, startY, row.Length, 40);
+                    Primitives2D.FillRectangleRound(spriteBatch, rect, row.Color, row.Text, Color.White, font, row.TextAlign);
+
+                    startY += 48;
                 }
 
                 int i = 0;
-                var rowRec = new Rectangle(BarStart, 400, 1420, 50);
-                foreach(var row in ViewDefinition.Rows)
+                startY += 50;
+            }
+
+                //INDIVIDUAL LEADERBOARD
+
+                if (ViewDefinition.IndividualLeaderBoard.Any())
+            {
+                spriteBatch.DrawString(font, "INDIVIDUAL   LEADERBOARD", new Vector2(BarStart, startY), Color.DarkBlue);
+                startY += 45;
+
+                int i = 0;
+                foreach (var row in ViewDefinition.IndividualLeaderBoard)
                 {
                     if (i % 2 == 0)
                     {
@@ -141,27 +168,34 @@ namespace GameItViewer
                             ResetColorQueue();
                     }
 
-                    spriteBatch.DrawString(font, row.Name, new Vector2(BarStart+20, startY), Color.White);
+                    spriteBatch.DrawString(font, row.Name, new Vector2(BarStart + 20, startY), Color.White);
 
                     i++;
                     startY += 44;
                 }
 
+                startY += 48;
+                
+                ResetColorQueue();
+                var keyStartX = BarStart;
+                
+                var labelSize = (int)font.MeasureString("KEY").X;
+                spriteBatch.DrawString(font, "KEY", new Vector2(keyStartX, startY), Color.Black);
 
+                keyStartX += labelSize + 20;
 
+                foreach (var title in ViewDefinition.IndividualLeaderBoard.FirstOrDefault().Values)
+                {
+                    var xSize = (int)font.MeasureString(title.Key).X;
+                    var rect = new Rectangle(keyStartX, startY, xSize+10, 40);  
+                    Primitives2D.FillRectangle(spriteBatch, rect, ColorQueue.Dequeue());
+                    spriteBatch.DrawString(font, title.Key, new Vector2(rect.X+5, rect.Y), Color.White);
+                    keyStartX += xSize + 25;
+                }
 
-
-
-            //var rectangle1 = new Rectangle(100, 300, 455, 50);
-            //Primitives2D.FillRectangleRound(spriteBatch, rectangle1, Color.Blue, "Team   Blue", Color.White, font);
-
-            //var rectangle3 = new Rectangle(100, 100, 388, 50);
-            //Primitives2D.FillRectangleRound(spriteBatch, rectangle3, Color.Purple, "Team   Purple", Color.White, font);
-
-            //var rectangle2 = new Rectangle(100, 200, 600, 50);
-            //Primitives2D.FillRectangleRound(spriteBatch, rectangle2, Color.Red, "Team   Red", Color.White, font);
-
-
+                startY += 48;
+            }
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -174,11 +208,11 @@ namespace GameItViewer
             ColorQueue = new Queue<Color>(
                 new List<Color>
                 {
-                    Color.Blue,
-                    Color.DodgerBlue,
-                    Color.BlueViolet,
-                    Color.CadetBlue,
+                    Color.IndianRed,
                     Color.CornflowerBlue,
+                    Color.DarkOliveGreen,
+                    Color.Orange,
+                    Color.Crimson,
                     Color.LightBlue,
                 });            
         }

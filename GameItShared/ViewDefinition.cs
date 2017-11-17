@@ -11,17 +11,17 @@ namespace GameItShared
     {
         public ViewDefinition()
         {
-            Rows = new List<VideoDefinitionRow>();
+            IndividualLeaderBoard = new List<VideoDefinitionRow>();
             ResetColorList();
         }
 
         public ProgressBar ProgressBar { get; set;}
 
-        public List<Bar> TeamBars { get; set;}
+        public List<TeamBar> TeamBars { get; set;}
 
         public string ViewDefinitionName { get; set; }
 
-        public List<VideoDefinitionRow> Rows { get; set; }
+        public List<VideoDefinitionRow> IndividualLeaderBoard { get; set; }
         
         public Queue<Color> MultiColorList { get; set; }
 
@@ -74,14 +74,14 @@ namespace GameItShared
     {
         public string Title { get; set; }
 
-        public List<Bar> BarLayers { get; set;}
+        public List<TeamBar> BarLayers { get; set;}
 
-        public Bar BackBar { get; set; }
+        public TeamBar BackBar { get; set; }
 
         public bool HasBackBar { get; set; } 
     }
 
-    public class Bar
+    public class TeamBar
     {
         public int Length { get; set; }
         public string Text { get; set; }
