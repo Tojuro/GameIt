@@ -43,6 +43,7 @@
             this.lstViewDefinitions.Size = new System.Drawing.Size(265, 228);
             this.lstViewDefinitions.TabIndex = 0;
             this.lstViewDefinitions.SelectedIndexChanged += new System.EventHandler(this.lstViewDefinitions_SelectedIndexChanged);
+            this.lstViewDefinitions.DoubleClick += new System.EventHandler(this.lstViewDefinitions_DoubleClick);
             // 
             // cmdClose
             // 

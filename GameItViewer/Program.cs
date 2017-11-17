@@ -2,6 +2,7 @@
 using GameItViewerUI;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GameItViewer
@@ -37,7 +38,7 @@ namespace GameItViewer
                             Start = 0,
                             TextAlign = TextAlign.Right
                         },
-                        BarLayers = new System.Collections.Generic.List<Bar>
+                        BarLayers = new List<Bar>
                         {
                             new Bar
                             {
@@ -54,7 +55,24 @@ namespace GameItViewer
                                 TextAlign = TextAlign.Left
                             },
                         }
-                    }
+                    },
+
+                    Rows = new List<VideoDefinitionRow>
+                    {
+                        new VideoDefinitionRow {Name = "Mordecai  Brown", Values = new Dictionary<string, int> { { "1", 297 }, { "2", 175 }, { "3", 85 }, { "4", 133 }, { "5", 45 }, } },
+                        new VideoDefinitionRow {Name = "King  Cole", Values = new Dictionary<string, int> { { "1", 275 }, { "2", 175 }, { "3", 150 }, { "4", 110 },  } },
+                        new VideoDefinitionRow {Name = "Harry  McIntire", Values = new Dictionary<string, int> { { "1", 274 }, { "2", 166 }, { "3", 85 }, { "4", 133 }, { "5", 3 }, } },
+                        new VideoDefinitionRow {Name = "Ed  Reulbach", Values = new Dictionary<string, int> { { "1", 277 }, { "2", 95 }, { "3", 85 }, { "4", 93 }, { "5", 2 }, } },
+                        new VideoDefinitionRow {Name = "Orval  Overall", Values = new Dictionary<string, int> { { "1", 280 }, { "2", 95 }, { "3", 65 }, { "4", 93 }, { "5", 12 }, } },
+                        new VideoDefinitionRow {Name = "Lew  Richie", Values = new Dictionary<string, int> { { "1", 280 }, { "2", 95 }, { "3", 55 }, { "4", 93 }, { "5", 4 }, } },
+                        new VideoDefinitionRow {Name = "Jack  Pfeister", Values = new Dictionary<string, int> { { "1", 280 }, { "2", 85 }, { "3", 65 }, { "4", 83 }, { "5", 4 }, } },
+                        new VideoDefinitionRow {Name = "Big  Jeff  Pfeffer", Values = new Dictionary<string, int> { { "1", 280 }, { "2", 85 }, { "3", 65 }, { "4", 73 },  } },
+                        new VideoDefinitionRow {Name = "Orlie  Weaver", Values = new Dictionary<string, int> { { "1", 256 }, { "2", 80 }, { "3", 85 }, { "4", 45 },   } },
+                        new VideoDefinitionRow {Name = "Rube  Kroh", Values = new Dictionary<string, int> { { "1", 244 }, { "2", 85 }, { "3", 60 }, { "4", 70 }, { "5", 4 }, } },
+                        new VideoDefinitionRow {Name = "Al  Carson", Values = new Dictionary<string, int> { { "1", 237 }, { "2", 75 }, { "3", 55 }, { "4", 68 }, { "5", 2 }, } },
+                        new VideoDefinitionRow {Name = "Bill  Foxen", Values = new Dictionary<string, int> { { "1", 248 }, { "2", 85 }, { "3", 45 }, { "4", 60 }, } },
+                    },
+
                 };
 
                 using (var game = new View(viewDef))

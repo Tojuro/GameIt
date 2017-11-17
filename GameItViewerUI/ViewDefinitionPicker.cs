@@ -41,5 +41,10 @@ namespace GameItViewerUI
         {
             cmdSelect.Enabled = (lstViewDefinitions != null && lstViewDefinitions.SelectedIndex >= 0);            
         }
+
+        private void lstViewDefinitions_DoubleClick(object sender, EventArgs e)
+        {
+            cmdSelect_Click(sender, e);
+        }
     }
 }
