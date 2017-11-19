@@ -62,6 +62,9 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <Content Include="Content\achievementhead.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Verdana.mgcontent" />
     <None Include="Content\Verdana.spritefont" />
     <Content Include="Content\Verdana.xnb">

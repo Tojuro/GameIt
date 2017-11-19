@@ -31,6 +31,7 @@ namespace GameItViewer
                     ProgressBar = new GameItShared.ProgressBar
                     {
                         HasBackBar = true,
+
                         BackBar = new TeamBar
                         {
                             Text = "Backlog",
@@ -38,6 +39,7 @@ namespace GameItViewer
                             Start = 0,
                             TextAlign = TextAlign.Right
                         },
+
                         BarLayers = new List<TeamBar>
                         {
                             new TeamBar
@@ -80,7 +82,22 @@ namespace GameItViewer
                         new TeamBar {Color = Color.Orange, Length = 777, Start = 0, Text = "Cleveland Spiders", TextAlign = TextAlign.Right},
                         new TeamBar {Color = Color.Navy, Length = 740, Start = 0, Text = "Brooklyn Bridegrooms", TextAlign = TextAlign.Right},
                         new TeamBar {Color = Color.LawnGreen, Length = 710, Start = 0, Text = "Minnesota North Stars", TextAlign = TextAlign.Right},
-                    }
+                    },
+
+                    Achievements = new List<Achievement>
+                    {
+                        new Achievement { AchievementId = 1, AcquireDate = DateTime.Now.AddHours(-1), Name = "Orlie Weaver"},
+                        new Achievement { AchievementId = 2, AcquireDate = DateTime.Now.AddHours(-2), Name = "Lew Richie"},
+                        new Achievement { AchievementId = 3, AcquireDate = DateTime.Now.AddHours(-3), Name = "Bill Foxen"},
+                        new Achievement { AchievementId = 1, AcquireDate = DateTime.Now.AddHours(-4), Name = "Harry McIntire"},
+                        new Achievement { AchievementId = 2, AcquireDate = DateTime.Now.AddHours(-5), Name = "Jack Pfeister"},
+                        new Achievement { AchievementId = 3, AcquireDate = DateTime.Now.AddHours(-6), Name = "Rube Kroh"},
+                        new Achievement { AchievementId = 1, AcquireDate = DateTime.Now.AddHours(-7), Name = "Mordecai Brown"},
+                        new Achievement { AchievementId = 2, AcquireDate = DateTime.Now.AddHours(-8), Name = "King Cole"},
+                        new Achievement { AchievementId = 3, AcquireDate = DateTime.Now.AddHours(-9), Name = "Orval Overall"},
+                        new Achievement { AchievementId = 4, AcquireDate = DateTime.Now.AddHours(-10), Name = "Ed Reulbach"},
+                    },
+                    
                 };
 
                 using (var game = new View(viewDef))

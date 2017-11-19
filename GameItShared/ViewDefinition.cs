@@ -19,13 +19,13 @@ namespace GameItShared
 
         public List<TeamBar> TeamBars { get; set;}
 
+        public List<Achievement> Achievements { get; set; }
+
         public string ViewDefinitionName { get; set; }
 
         public List<VideoDefinitionRow> IndividualLeaderBoard { get; set; }
         
         public Queue<Color> MultiColorList { get; set; }
-
-        public List<Achievement> Achievements { get; set; }
 
         public void ResetColorList()
         {
@@ -65,7 +65,6 @@ namespace GameItShared
     public class VideoDefinitionRow
     {
         public string Name { get; set; }
-
         public Dictionary<string, int> Values { get; set; }
 
     }
@@ -73,11 +72,8 @@ namespace GameItShared
     public class ProgressBar
     {
         public string Title { get; set; }
-
         public List<TeamBar> BarLayers { get; set;}
-
         public TeamBar BackBar { get; set; }
-
         public bool HasBackBar { get; set; } 
     }
 
@@ -92,9 +88,9 @@ namespace GameItShared
 
     public class Achievement
     {
-        public string Title { get; set; }
+        public int AchievementId { get; set; }
         public string Name { get; set; }
-
+        public DateTime AcquireDate { get; set; }
     }
 
 }

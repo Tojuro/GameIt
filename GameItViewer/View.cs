@@ -16,6 +16,7 @@ namespace GameItViewer
         SpriteBatch spriteBatch;
         SpriteFont font;
         ViewDefinition ViewDefinition;
+        Texture2D AchievementHeader;
 
         public View(ViewDefinition viewDefinition)
         {
@@ -53,6 +54,8 @@ namespace GameItViewer
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("Verdana");
+            AchievementHeader = Content.Load<Texture2D>("achievementhead");
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -97,6 +100,28 @@ namespace GameItViewer
 
             var startY = 25;
 
+            // ACHIEVEMENTS
+
+            spriteBatch.Draw(AchievementHeader, new Vector2(50, 20), Color.White);
+
+            var achievementLoc = new Vector2(50, 220);
+
+            foreach(var ach in ViewDefinition.Achievements)
+            {
+                DrawAchievement(spriteBatch, ach.AchievementId, ach.Name, achievementLoc);
+                achievementLoc.Y += 235;
+
+                if (achievementLoc.Y > 1000)
+                    break;
+            }
+
+
+
+            // SEPARATOR
+
+            Primitives2D.DrawLine(spriteBatch, new Vector2(BarStart - 50, 20), new Vector2(BarStart - 50, 1060), Color.Navy);
+
+
             // PROGRESS BAR
 
             if (ViewDefinition.ProgressBar != null)
@@ -115,7 +140,9 @@ namespace GameItViewer
                 startY += 100;
             }
 
+
             //INDIVIDUAL LEADERBOARD
+
             if (ViewDefinition.TeamBars.Any())
             {
                 spriteBatch.DrawString(font, "TEAM   LEADERBOARD", new Vector2(BarStart, startY), Color.DarkBlue);
@@ -133,7 +160,7 @@ namespace GameItViewer
                 startY += 50;
             }
 
-                //INDIVIDUAL LEADERBOARD
+            //INDIVIDUAL LEADERBOARD
 
                 if (ViewDefinition.IndividualLeaderBoard.Any())
             {
@@ -200,6 +227,42 @@ namespace GameItViewer
 
             base.Draw(gameTime);
         }
+
+        private void DrawAchievement(SpriteBatch spriteBatch, int AchievementId, string userName, Vector2 loc)
+        {
+            var txtLoc = loc;
+            txtLoc.Y += 185;
+            txtLoc.X += 45;
+
+            switch (AchievementId)
+            {
+                case 1:
+                    spriteBatch.Draw(AchievementHeader, loc, Color.White);
+                    spriteBatch.DrawString(font, $"{userName}", txtLoc, Color.Navy);
+                    break;
+
+                case 2:
+                    spriteBatch.Draw(AchievementHeader, loc, Color.White);
+                    spriteBatch.DrawString(font, $"{userName}", txtLoc, Color.Navy);
+                    break;
+
+                case 3:
+                    spriteBatch.Draw(AchievementHeader, loc, Color.White);
+                    spriteBatch.DrawString(font, $"{userName}", txtLoc, Color.Navy);
+                    break;
+
+                case 4:
+                    spriteBatch.Draw(AchievementHeader, loc, Color.White);
+                    spriteBatch.DrawString(font, $"{userName}", txtLoc, Color.Navy);
+                    break;
+
+                default:
+                    spriteBatch.Draw(AchievementHeader, loc, Color.White);
+                    spriteBatch.DrawString(font, $"{userName}", txtLoc, Color.Navy);
+                    break;
+            }
+        }
+
 
         private Queue<Color> ColorQueue;
 
